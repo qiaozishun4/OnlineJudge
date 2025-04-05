@@ -1,0 +1,17 @@
+version: '3'
+services:
+  oj-backend:
+    image: registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - oj-redis
+      - oj-postgres
+  oj-postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: onlinejudge
+      POSTGRES_PASSWORD: onlinejudge
+      POSTGRES_DB: onlinejudge
+  oj-redis:
+    image: redis:6
